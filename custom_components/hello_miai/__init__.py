@@ -347,7 +347,7 @@ def setup(hass, config):
                 if len(msg_queue) > 0:
                     send_finish = client._text_to_speech(msg_queue[0]['msg'], client.Service_Token_Cookie,
                                                          client.deviceIds_miai, int(msg_queue[0]['to_num']))
-                    if send_finish == True:
+                    if send_finish:
                         try:
                             time.sleep(len(msg_queue[0]['msg']) * DEFAULT_MIAI_SPEED + int(msg_queue[0]['wait_time']))
                         except:
@@ -367,7 +367,7 @@ def setup(hass, config):
         to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
         message = call.data.get(ATTR_MESSAGE)
 
-        if client.Service_Token_Cookie == None or client.deviceIds_miai == None:
+        if client.Service_Token_Cookie is None or client.deviceIds_miai is None:
             _LOGGER.error("还未登录")
         else:
             if not client._text_to_speech(message, client.Service_Token_Cookie, client.deviceIds_miai, int(to_num)):
@@ -378,7 +378,7 @@ def setup(hass, config):
         to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
         wait_time = call.data.get(WAIT_TIME, DEFAULT_WAIT_TIME)
         message = call.data.get(ATTR_MESSAGE)
-        if client.Service_Token_Cookie == None or client.deviceIds_miai == None:
+        if client.Service_Token_Cookie is None or client.deviceIds_miai is None:
             _LOGGER.error("还未登录")
         else:
             to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
@@ -390,7 +390,7 @@ def setup(hass, config):
         to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
         vol = call.data.get(ATTR_VOLUME)
 
-        if client.Service_Token_Cookie == None or client.deviceIds_miai == None:
+        if client.Service_Token_Cookie is None or client.deviceIds_miai is None:
             _LOGGER.error("还未登录")
         else:
             if not client.player_set_volume(int(vol), client.Service_Token_Cookie, client.deviceIds_miai, int(to_num)):
@@ -401,7 +401,7 @@ def setup(hass, config):
 
         to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
 
-        if client.Service_Token_Cookie == None or client.deviceIds_miai == None:
+        if client.Service_Token_Cookie is None or client.deviceIds_miai is None:
             _LOGGER.error("还未登录")
         else:
             if not client.player_play_operation('play', client.Service_Token_Cookie, client.deviceIds_miai,
@@ -413,7 +413,7 @@ def setup(hass, config):
 
         to_num = call.data.get(CONF_TO_NUM, DEFAULT_MIAI_NUM)
 
-        if client.Service_Token_Cookie == None or client.deviceIds_miai == None:
+        if client.Service_Token_Cookie is None or client.deviceIds_miai is None:
             _LOGGER.error("还未登录")
         else:
             if not client.player_play_operation('pause', client.Service_Token_Cookie, client.deviceIds_miai,
