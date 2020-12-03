@@ -1,0 +1,4 @@
+home-assistant-frontend==*
+voluptuous==*
+homeassistant==*
+
